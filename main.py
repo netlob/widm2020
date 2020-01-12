@@ -1,5 +1,6 @@
 import face_recognition
 import cv2
+import json
 import matplotlib.patches as patches
 from IPython.display import clear_output
 from matplotlib.pyplot import imshow
@@ -71,7 +72,7 @@ output_movie = cv2.VideoWriter('output-1.avi', fourcc, 25, (640, 360))
 
 # Loading video for face detection
 video_capture = cv2.VideoCapture(
-    "./episodes/1.mp4")  # Using trailer for now
+    "./episodes/epi-1.mp4")  # Using trailer for now
 length = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
 print(length)
 
@@ -92,7 +93,7 @@ while video_capture.isOpened():
     if frame_count % 500 == 0:
         print('{}/{}'.format(frame_count, length))
     if frame_count % 15 == 0:
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Find all the faces and face encodings in the current frame of video
         rgb_frame = frame[:, :, ::-1]
@@ -156,5 +157,11 @@ while video_capture.isOpened():
         output_movie.write(frame)
 cv2.destroyAllWindows()
 
-print(('anita:      {}\nbuddy:      {}\nclaes:      {}\njaike:      {}\njohan:      {}\nleonie:     {}\nmiljuschja: {}\nnathan:     {}\nrob:        {}\ntina:       {}').format(
-    anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina))
+print(('{' + ('anita:      {},\nbuddy:      {},\nclaes:      {},\njaike:      {},\njohan:      {},\nleonie:     {},\nmiljuschja: {},\nnathan:     {},\nrob:        {},\ntina:       {}').format(
+    anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
+
+data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
+    anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
+
+with open('./data/epi-1.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
