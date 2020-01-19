@@ -2,7 +2,7 @@ import face_recognition
 import cv2
 import json
 import matplotlib.patches as patches
-from IPython.display import clear_output
+# from IPython.display import clear_output
 from matplotlib.pyplot import imshow
 import matplotlib.pylab as plt
 
@@ -68,11 +68,11 @@ tina = 0
 
 # Create an output movie file (make sure resolution/frame rate matches input video!)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-output_movie = cv2.VideoWriter('output-1.avi', fourcc, 25, (640, 360))
+output_movie = cv2.VideoWriter('output-1.avi', fourcc, 25, (1920, 1080))
 
 # Loading video for face detection
 video_capture = cv2.VideoCapture(
-    "./episodes/epi-1.mp4")  # Using trailer for now
+    "./episodes/afl2.mp4")  # Using trailer for now
 length = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
 print(length)
 
@@ -90,8 +90,13 @@ while video_capture.isOpened():
 
     # We will search face in every 15 frames to speed up process.
     frame_count += 1
-    if frame_count % 500 == 0:
+    if frame_count % 250 == 0:
         print('{}/{}'.format(frame_count, length))
+        data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
+            anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
+
+        with open('./data/alf2-autosave{}.json'.format(frame_count), 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
     if frame_count % 15 == 0:
         # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
@@ -163,5 +168,5 @@ print(('{' + ('anita:      {},\nbuddy:      {},\nclaes:      {},\njaike:      {}
 data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
     anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
 
-with open('./data/epi-1.json', 'w', encoding='utf-8') as f:
+with open('./data/alf2.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
