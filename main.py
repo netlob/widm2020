@@ -68,7 +68,9 @@ tina = 0
 
 # Create an output movie file (make sure resolution/frame rate matches input video!)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-output_movie = cv2.VideoWriter('output-1.avi', fourcc, 25, (1920, 1080))
+output_movie = cv2.VideoWriter('output-3.avi', fourcc, 25, (1920, 1080))
+
+font = cv2.FONT_HERSHEY_DUPLEX
 
 # Loading video for face detection
 video_capture = cv2.VideoCapture(
@@ -90,14 +92,17 @@ while video_capture.isOpened():
 
     # We will search face in every 15 frames to speed up process.
     frame_count += 1
-    if frame_count % 250 == 0:
-        print('{}/{}'.format(frame_count, length))
-        data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
-            anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
+    if frame_count % 25 == 0:
+        # print('{}/{}'.format(frame_count, length))
+        # data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
+        #     anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
 
-        with open('./data/alf2-autosave{}.json'.format(frame_count), 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-    if frame_count % 15 == 0:
+        # with open('./data/alf2-autosave{}.json'.format(frame_count), 'w', encoding='utf-8') as f:
+        #     json.dump(data, f, ensure_ascii=False, indent=4)
+        cv2.destroyAllWindows()
+        exit(0)
+    if frame_count % 1 == 0:
+        print('{}/{}'.format(frame_count, 250))
         # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Find all the faces and face encodings in the current frame of video
@@ -154,10 +159,20 @@ while video_capture.isOpened():
 
             cv2.rectangle(frame, (left, bottom - 25),
                           (right, bottom), (0, 0, 255), cv2.FILLED)
-            font = cv2.FONT_HERSHEY_DUPLEX
             cv2.putText(frame, name, (left + 6, bottom - 6),
                         font, 0.5, (255, 255, 255), 1)
 
+        cv2.putText(frame, ('Anita: {}').format(anita), (30,500), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Buddy: {}').format(buddy), (30,560), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Vlaes: {}').format(claes), (30,620), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Jaike: {}').format(jaike), (30,680), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Johan: {}').format(johan), (30,740), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Leonie: {}').format(leonie), (30,800), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Miljuschja: {}').format(miljuschja), (30,860), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Nathan: {}').format(nathan), (30,920), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Rob: {}').format(rob), (30,980), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Tina: {}').format(tina), (30,1040), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('@Netlob').format(tina), (1600,120), font, 2, (0,255,255) , 5, True)
         # print('writing frame {} / {}'.format(frame_count, length))
         output_movie.write(frame)
 cv2.destroyAllWindows()
