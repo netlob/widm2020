@@ -17,10 +17,10 @@ $.ajax({
   method: "GET",
   cors: true
 }).done(function(response) {
-  document.body.innerHTML += `<h3>Wie is de mol stats</h3><hr>`;
+  $("main").append(`<h3>Wie is de mol stats</h3><hr>`);
   response = response.replace(/\s/g, "").toLowerCase();
 
-  document.body.innerHTML += `<h5>% landelijke verdenkingen</h5>`;
+  $("main").append(`<h5>% landelijke verdenkingen</h5>`);
   for (let person in stats) {
     stats[person].count = response
       .substr(response.indexOf(`"teaser-round-title">${person}`))
@@ -34,7 +34,15 @@ $.ajax({
       )
       .split(">")
       .pop();
-    document.body.innerHTML += `<b>${person}:</b> ${stats[person].count}%<br>`;
+    $("main").append(
+      `<span style="${
+        parseInt(stats[person].count) < 1
+          ? "color:red;text-decoration:line-through;"
+          : ""
+      }text-transform: capitalize;"><b>${person}:</b> ${
+        stats[person].count
+      }%<br></span>`
+    );
   }
 
   stats.total = parseInt(
@@ -43,7 +51,7 @@ $.ajax({
       response.indexOf("</strong>verdenkingen")
     )
   );
-  document.body.innerHTML += `<hr><b>Totaal:</b> ${stats.total} stemmen`;
+  $("main").append(`<hr><b>Totaal:</b> ${stats.total} stemmen`);
 
   stats.money = response
     .substr(response.indexOf('<divclass="moneypot-text">&euro;'))
@@ -53,7 +61,11 @@ $.ajax({
         .substr(response.indexOf('<divclass="moneypot-text">&euro;'))
         .indexOf("</div></div>")
     );
-  document.body.innerHTML += `<h5>Totaal € in de pot op dit moment</h5><h6>${stats.money}€</h6><br>`;
+  $("main").append(
+    `<h5>Totaal € in de pot op dit moment</h5><h6>${stats.money}€</h6><br><hr>`
+  );
 
-  // document.body.innerText = JSON.stringify(stats);
+  $("main").append(
+    `<br><h5>Aantal x voorgekomen in aflevering 2 per kandidaat</h6>`
+  );
 });
