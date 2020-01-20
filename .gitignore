@@ -125,3 +125,4 @@ dmypy.json
 .pyre/
 
 episodes/*.mp4
+*.avi
