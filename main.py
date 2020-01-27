@@ -74,7 +74,7 @@ font = cv2.FONT_HERSHEY_DUPLEX
 
 # Loading video for face detection
 video_capture = cv2.VideoCapture(
-    "./episodes/afl2.mp4")  # Using trailer for now
+    "./episodes/epi-3.mp4")  # Using trailer for now
 length = int(video_capture.get(cv2.CAP_PROP_FRAME_COUNT))
 print(length)
 
@@ -92,17 +92,15 @@ while video_capture.isOpened():
 
     # We will search face in every 15 frames to speed up process.
     frame_count += 1
-    if frame_count % 25 == 0:
-        # print('{}/{}'.format(frame_count, length))
-        # data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
-        #     anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
+    if frame_count % 250 == 0:
+        print('{}/{}'.format(frame_count, length))
+        data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
+            anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
 
-        # with open('./data/alf2-autosave{}.json'.format(frame_count), 'w', encoding='utf-8') as f:
-        #     json.dump(data, f, ensure_ascii=False, indent=4)
-        cv2.destroyAllWindows()
-        exit(0)
-    if frame_count % 1 == 0:
-        print('{}/{}'.format(frame_count, 250))
+        with open('./data/epi-3-autosave{}.json'.format(frame_count), 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    if frame_count % 5 == 0:
+        # print('{}/{}'.format(frame_count, 250))
         # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         # Find all the faces and face encodings in the current frame of video
@@ -115,7 +113,7 @@ while video_capture.isOpened():
         for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
             match = face_recognition.compare_faces(
-                known_faces, face_encoding, tolerance=0.50)
+                known_faces, face_encoding, tolerance=0.40)
 
             name = None
             if match[0]:
@@ -162,17 +160,28 @@ while video_capture.isOpened():
             cv2.putText(frame, name, (left + 6, bottom - 6),
                         font, 0.5, (255, 255, 255), 1)
 
-        cv2.putText(frame, ('Anita: {}').format(anita), (30,500), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Buddy: {}').format(buddy), (30,560), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Vlaes: {}').format(claes), (30,620), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Jaike: {}').format(jaike), (30,680), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Johan: {}').format(johan), (30,740), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Leonie: {}').format(leonie), (30,800), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Miljuschja: {}').format(miljuschja), (30,860), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Nathan: {}').format(nathan), (30,920), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Rob: {}').format(rob), (30,980), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('Tina: {}').format(tina), (30,1040), font, 2, (0,255,255) , 5, True)
-        cv2.putText(frame, ('@Netlob').format(tina), (1600,120), font, 2, (0,255,255) , 5, True)
+        cv2.putText(frame, ('Anita: {}').format(anita),
+                    (30, 500), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Buddy: {}').format(buddy),
+                    (30, 560), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Vlaes: {}').format(claes),
+                    (30, 620), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Jaike: {}').format(jaike),
+                    (30, 680), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Johan: {}').format(johan),
+                    (30, 740), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Leonie: {}').format(leonie),
+                    (30, 800), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Miljuschja: {}').format(miljuschja),
+                    (30, 860), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Nathan: {}').format(nathan),
+                    (30, 920), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Rob: {}').format(rob), (30, 980),
+                    font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('Tina: {}').format(tina),
+                    (30, 1040), font, 2, (0, 255, 255), 5, True)
+        cv2.putText(frame, ('@Netlob').format(tina),
+                    (1600, 120), font, 2, (255, 0, 255), 5, True)
         # print('writing frame {} / {}'.format(frame_count, length))
         output_movie.write(frame)
 cv2.destroyAllWindows()
@@ -183,5 +192,5 @@ print(('{' + ('anita:      {},\nbuddy:      {},\nclaes:      {},\njaike:      {}
 data = json.loads(('{' + ('"anita":{},"buddy":{},"claes":{},"jaike":{},"johan":{},"leonie":{},"miljuschja":{},"nathan":{},"rob":{},"tina":{}').format(
     anita, buddy, claes, jaike, johan, leonie, miljuschja, nathan, rob, tina) + '}'))
 
-with open('./data/alf2.json', 'w', encoding='utf-8') as f:
+with open('./data/epi-3.json', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
