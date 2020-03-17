@@ -1,6 +1,6 @@
 # Wie is de Mol gezichtsherkenning!
 ### Credits
-Een deel van deze repo is gebasseerd op https://github.com/mattijn/'s repo. Onder andere deze hele readme want ik ben niet zo gek om 80 regels aan readme te schrijven voor zo'n project lol. Dus <3 naar Mattijn!
+Een deel van deze repo is gebasseerd op https://github.com/mattijn/ 's repo. Onder andere deze hele readme want ik ben niet zo gek om 80 regels aan readme te schrijven voor zo'n project lol. Dus <3 naar Mattijn!
 
 * * *
 
@@ -24,7 +24,7 @@ Hierbij als voorbeeld de karakteristieken van Jan en Merel:
 
 Gezicht karakteristiek Jan             |  Gezicht karakteristiek Merel
 :-------------------------:|:-------------------------:
-![2018](img/jan_2018.jpg "jan")  |  ![2019](img/merel_2019.jpg "merel")
+![2018](https://github.com/mattijn/widm/blob/master/img/jan_2018.jpg "jan")  |  ![2019](https://github.com/mattijn/widm/blob/master/img/merel_2019.jpg "merel")
 
 Via [downloadgemist.nl](http://downloadgemist.nl) is het mogelijk om afleveringen van de publieke omroep te downloaden (**EDIT**: de dag nadat deze post online kwam is dit niet meer mogelijk). Dit heb ik gedaan voor de aflevering 1-3 van seizoen 2018 en 2019. 
 
@@ -34,7 +34,7 @@ Vervolgens analyseren we de afleveringen frame per frame op zoek naar gezichten 
 
 Gezichtsherkenning shot 2018             |  Gezichtsherkenning shot 2019
 :-------------------------:|:-------------------------:
-![2018](img/widm_2018.gif)  |  ![2019](img/widm_2019.gif)
+![2018](https://github.com/mattijn/widm/raw/master/img/widm_2018.gif)  |  ![2019](https://github.com/mattijn/widm/raw/master/img/widm_2019.gif)
 
 Hierboven zie je in een kort shot uit seizoen 2018 en seizoen 2019 hoe accuraat het algoritme is. Je kan afstellen hoe klein of groot een gezicht moet zijn voor detectie en ik heb het zodanig afgesteld dat de gezichten goed in beeld moeten zijn.
 
@@ -44,7 +44,7 @@ Hieronder zie je dan ook de percentages hoe vaak elke deelnemer ten opzichte van
 
 Voorkomen deelnemers 2018 (%)             |  Voorkomen deelnemers 2019 (%)
 :-------------------------:|:-------------------------:
-![2018](img/widm_2018_df.png)  |  ![2019](img/widm_2019_df.png)
+![2018](https://github.com/mattijn/widm/raw/master/img/widm_2018_df.png)  |  ![2019](https://github.com/mattijn/widm/raw/master/img/widm_2019_df.png)
 
 Wanneer we kijken naar de resultaten van seizoen 2018 zien we dan ook dat Jan daadwerkelijk minder vaak is gedetecteerd. Niet als minste, dat was Ron die er als eerste uitlag. Maar wel aan de lage kant. Laten we dat vasthouden als gegeven: de montage laat de Mol significant minder vaak in beeld, maar niet de minste. Op basis van seizoen 2018 komt de Mol op plaats 4 van minst voorkomende deelnemers.
 
@@ -73,8 +73,7 @@ Afl3 tracked: https://youtu.be/eTSBJn_XpT4
 
 * * * 
 
-Voorspelling 2020 op basis van 3 afleveringen: Claes is de mol
-Voorspelling 2020 op basis van 6 afleveringen: Rob is de mol
+Voorspelling 2020: Rob is de mol
 
 * * *
 
