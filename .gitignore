@@ -128,3 +128,6 @@ episodes/*.mp4
 *.avi
 
 node_modules
+
+data/*autosave*.json
+data/alf2-autosave*
